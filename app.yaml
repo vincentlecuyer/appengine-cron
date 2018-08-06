@@ -12,11 +12,6 @@ libraries:
   version: latest
 
 env_variables:
-  CONSUMER_KEY: 'xxx'
-  CONSUMER_SECRET: 'xxx'
-  ACCESS_TOKEN: 'xxx'
-  ACCESS_TOKEN_SECRET: 'xxx'
   PROJECT: 'transat-data'  # Enter your own project ID here
-  DATASET: 'xxx'
   BUCKET: 'transat-data'  # Name of the bucket where the Dataflow template resides
-  TEMPLATE_NAME: 'wordcount.java' # Enter the name of your Dataflow template
+  TEMPLATE_NAME: 'bq2bq' # Enter the name of your Dataflow template

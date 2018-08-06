@@ -1,7 +1,7 @@
 import datetime
 import webapp2
 import os 
-
+import logging
 from googleapiclient.discovery import build
 from oauth2client.client import GoogleCredentials
 
@@ -11,9 +11,9 @@ class LaunchJob(webapp2.RequestHandler):
     is_cron = self.request.headers.get('X-Appengine-Cron', False)
 
     # If it's not the case, block the request
-    #if not is_cron:
-    #    self.response.write('Request Denied')
-    #    return
+    if not is_cron:
+        self.response.write('Request Denied')
+        return
 
     # These env vars are set in app.yaml.
     PROJECT = os.environ['PROJECT']
@@ -21,7 +21,7 @@ class LaunchJob(webapp2.RequestHandler):
     TEMPLATE = os.environ['TEMPLATE_NAME']
 
     # SET JOB NAME ACCORDING TO TIMESTAMP
-    JOBNAME = 'PROJECT' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    JOBNAME = "{project}-{date}".format(project = PROJECT, date = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S"))
 
     # Get App engine Credentials for API access
     credentials = GoogleCredentials.get_application_default()

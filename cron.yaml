@@ -1,0 +1,6 @@
+cron:
+- description: "daily bigquery export job"
+  url: /launchtemplatejob
+  target: default
+  schedule: every 24 hours
+  timezone: America/Montreal
